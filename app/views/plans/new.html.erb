@@ -1,0 +1,13 @@
+<% if params[:action] == "new" %>
+	<div class="progress">
+		<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="width: 0%;">
+			 0%
+		</div>
+	</div>
+<% end %>
+
+
+<h3>プランの作成はとっても簡単です。</h3>
+<h3>STEP1：　まずはプランの基本情報を入力しましょう</h3>
+
+<%= render 'form' %>

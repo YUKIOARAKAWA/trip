@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  plan_id: 
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  route: 1
+
+two:
+  user_id: 
+  plan_id: 
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  route: 1

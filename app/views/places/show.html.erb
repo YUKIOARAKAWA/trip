@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+<p>
+  <strong>User:</strong>
+  <%= @place.user.email %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @place.plan.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @place.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @place.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @place.longitude %>
+</p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @place.route %>
+</p>
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>

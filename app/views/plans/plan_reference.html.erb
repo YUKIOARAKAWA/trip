@@ -1,0 +1,63 @@
+これは参照用の画面です。
+<div class="container-fluid">
+	<div class="row">
+
+		<div class="col-md-5">
+      <div style='width: 700px;'>
+        <div id="map" style='width: 550px; height: 700px;'></div>
+      </div>
+    </div>
+
+
+		<div class="col-md-7">
+      <table class = "table">
+      <thead>
+        <tr>
+        <th>順番</th>
+        <th>場所</th>
+        <th>FROM</th>
+        <th>TO</th>
+        <tr>
+      </thead>
+      <tbody>
+        <% @places.each do |place| %>
+        <tr id="<%= place.id %>">
+          <td class = "route"><%= place.route %></td>
+          <!--<td><%= place.user.name %></td>-->
+          <td><%= place.address %></td>
+          <td><%= place.from %></td>
+          <td><%= place.to %></td>
+        </tr>
+        <% end %>
+      </tbody>
+      </table>
+    </div>
+	</div>
+</div>
+
+
+<!--ここにdistanceの結果を描画する
+<div id="directions-result" style="width:600px; height:1000px"></div>
+ここにdistanceの結果を描画する-->
+
+
+
+
+<script type="text/javascript">
+poli = [];
+point = <%= @point %>;
+for (var i = 0; i < point.length; i++) {
+  poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
+};
+
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(7);
+    handler.map.centerOn(poli[0]);
+
+  });
+
+</script>

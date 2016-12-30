@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+<%= form_for(@plan) do |f| %>
+  <% if @plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+      <% @plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+        <div class="field input-group">
+          <span class="input-group-addon">プラン名</span>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field input-group">
+          <span class="input-group-addon">エリア</span>
+          <%= f.collection_select :area_id, Area.all, :id, :name %>
+        </div>
+期間
+        <div class="form-inline">
+          <div class='input-group date startdatepicker'>
+            <%= f.text_field :start_date, class: 'form-control' %>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+          </div> 〜
+          <div class='input-group date enddatepicker'>
+            <%= f.text_field :end_date, class: 'form-control' %>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+          </div>
+        </div>
+        <br>
+        <div class="actions">
+          <% if params[:action] == "new" %>
+            <%= f.submit class: 'btn btn-primary', value: "次へ", name: "new" %>
+          <% else %>
+            <%= f.submit class: 'btn btn-primary', value: "決定" %>
+          <% end %>
+        </div>
+
+
+<% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">レストラン検索</h4>
+    </div>
+    <div class="modal-body">検索条件を入力してください
+      <p>・エリア</p>
+    　<p>・予算</p>
+    　<p>・種類</p>
+
+検索範囲
+<input type = "radio" name = "range" value = "1">300m
+<input type = "radio" name = "range" value = "2">500m
+<input type = "radio" name = "range" value = "3" checked>1000m
+<input type = "radio" name = "range" value = "4">2000m
+<input type = "radio" name = "range" value = "5">3000m
+
+
+<br>
+<input type="button" value="検索" class="js--apply btn btn-primary" />
+
+      <p>検索結果一覧</p>
+      <div class = view></div>
+    </div>
+    <div class="modal-footer">
+
+      <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import "bootstrap-social";
+ @import 'bootstrap-datetimepicker';
+
+ .photo {
+ 	width:		100%;
+ 	margin:		0;
+ 	padding:	0;
+ 	position:	relative; /* 相対位置指定 */
+
+ }
+
+ .title {
+ 	width:		100%;
+ 	font-size:	300%;
+ 	text-align:	center;
+ 	top:		100px;
+ 	margin:		0;
+ 	padding:	0;
+ 	color:		#fff;
+/* 	background:	rgba(0,0,0,0.4); /* 帯の透明度 */
+ 	position:	absolute; /* 絶対位置指定 */
+ }
+
+ .login {
+   width:		30%;
+   font-size:	100%;
+   text-align:	center;
+   bottom:		-350px;
+   margin:		400px;
+   padding:	0;
+   color:		#fff;
+   background:	rgba(0,0,0,0.4); /* 帯の透明度 */
+   position:	absolute; /* 絶対位置指定 */
+ }
+
+
+ .dropdown:hover > .dropdown-menu{
+  display: block;
+}

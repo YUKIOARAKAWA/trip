@@ -1,0 +1,51 @@
+	<div class="progress">
+		<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="width: 50%;">
+			 50%
+		</div>
+	</div>
+
+<h1>STEP2　続いて参加するメンバーを決めましょう!</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+<%= form_for @plan_user, url: add_member_plans_path do |f| %>
+  <% if @plan_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plan_user.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+      <% @plan_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<br>
+あなたの他にプランに参加するメンバーを選択してください。
+  <div class="field">
+    <%= f.collection_select :user_id, User.where.not(id: @joined_members_ids), :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :plan_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: 'btn btn-success', value: "メンバーに追加"%>
+  </div>
+<% end %>
+
+<br>
+<h3><現在のメンバー></h3>
+  <% @members.each do |member| %>
+    <td><%= member.name %></td><br>
+    <%= profile_img(member) %>
+  <% end %>
+  <br>
+	<td><%=link_to "このメンバーでプランを作成する", plan_path(@plan_user.plan_id), class: 'btn btn-primary'%></td><br>
+	※ メンバーはあとからでも追加することができます。
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<h2 class="text-left">確認画面</h2>
+<div class = "text-right">
+<%=link_to "PDF出力", pdf_plan_path(@plan), class: 'btn btn-primary', style: 'color:white'%>
+<%=link_to "メンバー全員に通知メールを送る", finish_mail_plan_path(@plan), class: 'btn btn-primary', style: 'color:white'%>
+</div>
+
+<table class = "table">
+<thead>
+  <tr>
+  <th>順番</th>
+  <th>場所</th>
+  <th>FROM</th>
+  <th>TO</th>
+  <tr>
+</thead>
+<tbody>
+  <% @places.each do |place| %>
+  <tr id="<%= place.id %>">
+    <td class = "route"><%= place.route %></td>
+    <!--<td><%= place.user.name %></td>-->
+    <td><%= place.address %></td>
+    <td><%= place.from.strftime("%Y年%m月%d日 %H時%M分") %></td>
+    <td><%= place.to.strftime("%Y年%m月%d日 %H時%M分") %></td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+
+
+<p><%=link_to "編集に戻る", plan_path(@plan), class: 'btn btn-primary', style: 'color:white'%></p>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>「<%= @areaname %>」の検索結果(<%= @plans.count %>件)</h1>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<% @plans.each do |plan| %>
+		<div class="col-md-3 col-xs-offset-1">
+
+			<div class="media">
+				<a class="media-left" href="#">
+					<%= image_tag("/Prefectures/#{plan.area.id}.jpg", :size => "200x200", :alt => "アイコン") %>
+				</a>
+				<div class="media-rigth">
+					<h4 class="media-heading">
+						<%=link_to plan.name, plan_path(plan)%>
+					</h4>
+					メンバー (<%= plan.plan_users.count %>)
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

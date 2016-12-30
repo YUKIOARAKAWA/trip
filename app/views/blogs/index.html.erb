@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Blogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.Test %></td>
+        <td><%= blog.name %></td>
+        <td><%= link_to 'Show', blog %></td>
+        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Blog', new_blog_path %>
+
+
+
+１
+<div id="googlemaps1" style="width:400px; height:400px"></div>
+
+２
+<div id="googlemaps2" style="width:500px; height:400px"></div>
+
+3(鳥取)
+<div id="googlemaps3" style="width:600px; height:400px"></div>
+
+4(ドラッグ不可)
+<div id="googlemaps4" style="width:600px; height:400px"></div>
+
+5(ホイール不可)
+<div id="googlemaps5" style="width:600px; height:400px"></div>
+
+6(東京にマーカー)
+<div id="googlemaps6" style="width:600px; height:400px"></div>
+
+7(鳥取市にマーカーを加える)
+<div id="googlemaps7" style="width:600px; height:400px"></div>
+<button type="button" id = "maps7_markeranime">クリック</button>
+<button type="button" id = "maps7_markerdelete">削除</button>
+<br>
+
+8(２地点を結ぶ)
+<div id="googlemaps8" style="width:600px; height:400px"></div>
+<button type="button" id = "maps8_marker_tottori">クリック（鳥取市）</button>
+<button type="button" id = "maps8_marker_yonago">クリック（米子市）</button>
+<button type="button" id = "maps8_polylines_yonago_to_tottori">クリック（結ぶ）</button><br>
+
+9(入力した住所または地名に移動)
+<div id="googlemaps9" style="width:600px; height:400px"></div>
+<div id = "point" style= "width:300px; margin-right:auto;"></div>
+場所 <input type = "text" id = "address" value = ""><br>
+コメント <input type = "text" id = "comment" value = "">
+<input type = "button" id = "geo" value = "追加"><br>
+<button type="button" id = "polylines_geo">経路作成</button>
+<button type="button" id = "polylines_dis">経路作成(道に沿った)</button>
+<div id="directions-panel" style="width:600px; height:400px"></div>
+
+
+
+
+<br><br><br><br><br><br><br>

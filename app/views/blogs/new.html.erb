@@ -1,0 +1,112 @@
+<h1>New Blog</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', blogs_path %>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>名前</th>
+            <th>特徴</th>
+        </tr>
+    </thead>
+    <tbody id="sortable">
+        <tr>
+            <th>とんこつラーメン</th>
+            <td>コッテリ</td>
+        </tr>
+        <tr>
+            <th>塩ラーメン</th>
+            <td>うまい</td>
+        </tr>
+        <tr>
+            <th>醤油ラーメン</th>
+            <td>イケてる</td>
+        </tr>
+        <tr>
+            <th>二郎</th>
+            <td>関内</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+レストランAPI
+
+
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<title>JSONPでレストラン検索APIの結果を取得するサンプルコード</title>
+</head>
+<body>
+<input type="text" placeholder="enter your access key here" class="js--key"><input type="button" value="apply" class="js--apply" />
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+
+<script>
+
+(function(){
+
+  var url = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
+  var params = {
+    keyid: 'cae5974528b21caa3660751869674b23',
+    format: 'json',
+    latitude: 35.705518,
+    longitude: 139.649267,
+    range: 1
+  };
+
+  var showResult = function(result){
+    if ( result.total_hit_count > 0 ) {
+      var res = '';
+      alert( result.total_hit_count + '件の結果が見つかりました。\n' );
+      for ( var i in result.rest ){
+          res += result.rest[i].id + ' ' + result.rest[i].name + ' ' + result.rest[i].url + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
+      }
+      alert(res);
+    } else {
+      alert( '検索結果が見つかりませんでした。' );
+    }
+  }
+
+  $(document).on('click', '.js--apply', function(){
+  //  params.keyid = $('.js--key').val();
+    $.getJSON(url, params, function(result){
+      showResult(result);
+    });
+  });
+
+})(jQuery);
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<h1><%= @plan.name %></h1>
+<table class = "table">
+<thead>
+  <tr>
+  <th>順番</th>
+  <th>場所</th>
+  <th>FROM</th>
+  <th>TO</th>
+  </tr>
+</thead>
+<tbody>
+  <% @places.each do |place| %>
+  <tr id="<%= place.id %>">
+    <td class = "route"><%= place.route %></td>
+    <!--<td><%= place.user.name %></td>-->
+    <td><%= place.address %></td>
+    <td><%= place.from.strftime("%Y年%m月%d日 %H時%M分") %></td>
+    <td><%= place.to.strftime("%Y年%m月%d日 %H時%M分") %></td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
