@@ -21,9 +21,9 @@ database.ymlを自分のローカル環境の合わせて修正
 
 ``` bundle exec rake db:seed ```
 
+.envファイルをプロジェクトパスに作成
 
-マスタデータ作成
-bin/rake db:seed
+``` rails s ```
 
 ## テスト
 Rspec + factory_girl + database_cleaner
