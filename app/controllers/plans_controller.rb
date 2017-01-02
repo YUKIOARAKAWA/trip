@@ -95,6 +95,10 @@ class PlansController < ApplicationController
     end
   end
 
+  def add_restaurant
+    binding.pry
+  end
+
   def datetime
     @place = Place.find(datatime_params[:id])
     #  binding.pry

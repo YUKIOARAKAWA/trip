@@ -47,6 +47,7 @@
                 + '分\n<br>'
                 + '<input type="hidden" name="latitude_' + i + '" value=' + result.rest[i].latitude + '>'
                 + '<input type="hidden" name="longitude_' + i + '" value=' + result.rest[i].longitude + '>'
+                + '<input type="hidden" name="name_' + i + '" value=' + result.rest[i].name + '>'
 
         }
   //      console.log(res);
@@ -107,12 +108,26 @@ function baid(){
 function restaurant_post(aa){
   //alert(aa.val());
   id = aa.attr('id')
-  alert(id)
+//  alert(id)
+  name = $('input[name="name_' + id + '"]').val()
   longitude = $('input[name="longitude_' + id + '"]').val()
   latitude = $('input[name="latitude_' + id + '"]').val()
   alert(longitude)
+  alert(latitude)
+  alert(name)
+  var post ={
+    name: name,
+    longitude: longitude,
+    latitude: latitude
+  };
 
-  
+  jQuery.post(
+    '/plans/add_restaurant',
+    post,
+    function(data){
+      alert(data);
+      },
+    'json');
 
 }
 
