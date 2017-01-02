@@ -37,7 +37,7 @@
   //      alert( result.hit_per_page + '取得件数\n' );
         for ( var i in result.rest ){
   //          res += result.rest[i].name + ' ' + result.rest[i].url + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
-            res += '<input type="button" value="追加" class="add btn btn-primary" id = ' + i + ' />'
+            res += '<input type="button" value="追加" class="add btn btn-primary restaurant" id = ' + i + ' />'
                 + '<a href=' + result.rest[i].url
                 + '>' + result.rest[i].name + '</a>'
                 + '最寄駅：'
@@ -53,6 +53,14 @@
   //      console.log("生データ");
         console.log(result);
         $(".view").html(res);
+
+        //ここでバインドしないとダメか？
+        $('.restaurant').each(function(){
+          console.log("押したよ");
+        }
+
+        );
+
       } else {
         alert( '検索結果が見つかりませんでした。' );
       }
@@ -85,6 +93,12 @@ $.getJSON(
 });
   });
 
+
+//選択したレストランをplaceテーブルに登録する
+
+
+
+//選択したレストランをplaceテーブルに登録する
 
 
 
