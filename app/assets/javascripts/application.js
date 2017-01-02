@@ -55,11 +55,8 @@
         $(".view").html(res);
 
         //ここでバインドしないとダメか？
-        $('.restaurant').each(function(){
-          console.log("押したよ");
-        }
+        baid();
 
-        );
 
       } else {
         alert( '検索結果が見つかりませんでした。' );
@@ -94,11 +91,23 @@ $.getJSON(
   });
 
 
-//選択したレストランをplaceテーブルに登録する
+//検索結果のレストランにpost処理をバインド
+function baid(){
+  $('.restaurant').each(function(){
+    console.log("押したよ");
+    $(this).click(function(){
+      restaurant_post($(this));
+    })
+  });
+}
 
 
+//レストランをplaceテーブルに登録する
+function restaurant_post(aa){
+  alert(aa.val());
 
-//選択したレストランをplaceテーブルに登録する
+}
+
 
 
 
