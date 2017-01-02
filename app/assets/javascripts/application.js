@@ -97,6 +97,7 @@ function baid(){
     console.log("押したよ");
     $(this).click(function(){
       restaurant_post($(this));
+
     })
   });
 }
@@ -104,7 +105,14 @@ function baid(){
 
 //レストランをplaceテーブルに登録する
 function restaurant_post(aa){
-  alert(aa.val());
+  //alert(aa.val());
+  id = aa.attr('id')
+  alert(id)
+  longitude = $('input[name="longitude_' + id + '"]').val()
+  latitude = $('input[name="latitude_' + id + '"]').val()
+  alert(longitude)
+
+  
 
 }
 
