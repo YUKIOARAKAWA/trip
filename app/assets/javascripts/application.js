@@ -109,6 +109,7 @@ function restaurant_post(aa){
   //alert(aa.val());
   id = aa.attr('id')
 //  alert(id)
+  plan_id = $("#plan_id").val();
   name = $('input[name="name_' + id + '"]').val()
   longitude = $('input[name="longitude_' + id + '"]').val()
   latitude = $('input[name="latitude_' + id + '"]').val()
@@ -116,6 +117,7 @@ function restaurant_post(aa){
   alert(latitude)
   alert(name)
   var post ={
+    plan_id: plan_id,
     name: name,
     longitude: longitude,
     latitude: latitude

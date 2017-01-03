@@ -22,8 +22,10 @@ class PlansController < ApplicationController
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
-      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
-                        行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
+      if place.pins[0].present?
+        marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
+                          行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
+      end
       marker.picture({
                 :url    => "/#{i}.png",
                 #:url    => "https://graph.facebook.com/#{place.user.uid}/picture?width=32&height=32",
@@ -96,7 +98,13 @@ class PlansController < ApplicationController
   end
 
   def add_restaurant
-    binding.pry
+    @plan = Plan.find(params[:plan_id])
+    @place = @plan.places.build(latitude: params[:latitude] ,longitude: params[:longitude], address: params[:name], user_id: current_user.id )
+    @place.set_route(@plan.id)
+    @place.save
+        binding.pry
+    redirect_to action: show
+
   end
 
   def datetime
