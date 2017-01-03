@@ -81,55 +81,8 @@
 			<!--<%= render partial: 'modal' %>-->
 		</div>
 
+		<%= render partial: 'table', locals: { places: @places } %>
 
-      <table class = "table">
-      <thead>
-        <tr>
-        <th>順番</th>
-        <th>登録者</th>
-        <th>場所</th>
-				<th>action</th>
-				<th>FROM</th>
-				<th>TO</th>
-				<th>時間(距離)</th>
-        <!-- 緯度・経度は表示しない<th>緯度</th>-->
-        <!-- 緯度・経度は表示しない<th>経度</th>-->
-        <tr>
-      </thead>
-      <tbody id="sortable"><%i = 0%>
-        <% @places.each do |place| %>
-        <tr id="<%= place.id %>">
-          <td class = "route"><%= place.route %></td>
-          <td><%= place.user.name %></td>
-          <td><%= place.address %></td>
-          <!-- 緯度・経度は表示しない<td><%= place.latitude %></td>-->
-          <!-- 緯度・経度は表示しない<td><%= place.longitude %></td>-->
-					<td><%= link_to '削除', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-				<%= form_for place, url: datetime_plans_path, method: "post", remote: true do |f| %>
-					<td><div class='input-group date startdatetimepicker'>
-						<%= f.text_field :from, class: 'form-control testid' %>
-						<span class="input-group-addon">
-					</div></td>
-					<td><div class='input-group date enddatetimepicker'>
-						<%= f.text_field :to, class: 'form-control testid' %>
-						<span class="input-group-addon">
-					</div></td>
-					<td><div>
-						<%= f.hidden_field :id, value: place.id %>
-					</div></td>
-					<td>
-						<!--<div class="actions">
-							<%= f.submit class: 'btn btn-primary', value: "更新" %>
-						</div>-->
-						<div class = "hidden_number">
-							<div id ="<%= i%>"></div></div>
-					</td>
-				<% end %>
-        </tr>
-        <%i = i + 1%><% end %>
-      </tbody>
-      </table>
 			ドラッグ＆ドロップで経路を変更することで、移動時間/経路が自動で算出されます。<br>
 			入力された情報はブラウザを閉じても保存されます。<br><br>
 			<!--<button type="button" id = "create_routes" class = 'btn btn-primary'>直線を引く</button>
