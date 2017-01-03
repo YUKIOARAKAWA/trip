@@ -102,8 +102,38 @@ class PlansController < ApplicationController
     @place = @plan.places.build(latitude: params[:latitude] ,longitude: params[:longitude], address: params[:name], user_id: current_user.id )
     @place.set_route(@plan.id)
     @place.save
-        binding.pry
-    redirect_to action: show
+    @places = @plan.places.order(:route)
+
+        i = 1
+        @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+          marker.lat place.latitude
+          marker.lng place.longitude
+          if place.pins[0].present?
+            marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
+                              行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
+          end
+          marker.picture({
+                    :url    => "/#{i}.png",
+                    #:url    => "https://graph.facebook.com/#{place.user.uid}/picture?width=32&height=32",
+                    :width  => "28.00000000001",
+                    :height => "21.00000000001"
+                   })
+          marker.json({title: place.address})
+          i = i + 1
+      end
+
+        @point = []
+        @hash.each do |hash|
+          temp= []
+          temp.push(hash[:lat])
+          temp.push(hash[:lng])
+          @point.push(temp)
+        end
+      #  render 'redraw'
+      #  render :text => "OK"
+      @aaa = {hash: @hash, point: @point}
+        render :json => @aaa
+
 
   end
 

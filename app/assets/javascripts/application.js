@@ -98,7 +98,6 @@ function baid(){
     console.log("押したよ");
     $(this).click(function(){
       restaurant_post($(this));
-
     })
   });
 }
@@ -106,9 +105,7 @@ function baid(){
 
 //レストランをplaceテーブルに登録する
 function restaurant_post(aa){
-  //alert(aa.val());
   id = aa.attr('id')
-//  alert(id)
   plan_id = $("#plan_id").val();
   name = $('input[name="name_' + id + '"]').val()
   longitude = $('input[name="longitude_' + id + '"]').val()
@@ -127,7 +124,7 @@ function restaurant_post(aa){
     '/plans/add_restaurant',
     post,
     function(data){
-      alert(data);
+      callbacks(data);
       },
     'json');
 
@@ -350,6 +347,7 @@ function callbacks(data){
 //ここから
 //alert(data["hash"]);
 //alert(data.point);
+$('#myModal').modal('hide')
 
 handler = Gmaps.build('Google');
 defo = new google.maps.LatLng( 39.0686606 , 141.3507552 );
