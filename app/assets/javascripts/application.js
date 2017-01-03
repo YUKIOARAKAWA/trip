@@ -37,7 +37,7 @@
   //      alert( result.hit_per_page + '取得件数\n' );
         for ( var i in result.rest ){
   //          res += result.rest[i].name + ' ' + result.rest[i].url + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
-            res += '<input type="button" value="追加" class="add btn btn-primary" />'
+            res += '<input type="button" value="追加" class="add btn btn-success restaurant" id = ' + i + ' />'
                 + '<a href=' + result.rest[i].url
                 + '>' + result.rest[i].name + '</a>'
                 + '最寄駅：'
@@ -45,14 +45,20 @@
                 + '距離：'
                 + result.rest[i].access.walk
                 + '分\n<br>'
-                + '<input type="hidden" name="userid" value=' + result.rest[i].latitude + '>'
-                + '<input type="hidden" name="userid" value=' + result.rest[i].longitude + '>'
+                + '<input type="hidden" name="latitude_' + i + '" value=' + result.rest[i].latitude + '>'
+                + '<input type="hidden" name="longitude_' + i + '" value=' + result.rest[i].longitude + '>'
+                + '<input type="hidden" name="name_' + i + '" value=' + result.rest[i].name + '>'
 
         }
   //      console.log(res);
   //      console.log("生データ");
         console.log(result);
         $(".view").html(res);
+
+        //ここでバインドしないとダメか？
+        baid();
+
+
       } else {
         alert( '検索結果が見つかりませんでした。' );
       }
@@ -84,6 +90,45 @@ $.getJSON(
   showResult(result);
 });
   });
+
+
+//検索結果のレストランにpost処理をバインド
+function baid(){
+  $('.restaurant').each(function(){
+    console.log("押したよ");
+    $(this).click(function(){
+      restaurant_post($(this));
+    })
+  });
+}
+
+
+//レストランをplaceテーブルに登録する
+function restaurant_post(aa){
+  id = aa.attr('id')
+  plan_id = $("#plan_id").val();
+  name = $('input[name="name_' + id + '"]').val()
+  longitude = $('input[name="longitude_' + id + '"]').val()
+  latitude = $('input[name="latitude_' + id + '"]').val()
+  alert(longitude)
+  alert(latitude)
+  alert(name)
+  var post ={
+    plan_id: plan_id,
+    name: name,
+    longitude: longitude,
+    latitude: latitude
+  };
+
+  jQuery.post(
+    '/plans/add_restaurant',
+    post,
+    function(data){
+      callbacks(data);
+      },
+    'json');
+
+}
 
 
 
@@ -298,10 +343,10 @@ document.getElementById( 'confirm' ).onclick = function( e ){
 
 
 function callbacks(data){
-//  alert(data);
 //ここから
 //alert(data["hash"]);
 //alert(data.point);
+$('#myModal').modal('hide')
 
 handler = Gmaps.build('Google');
 defo = new google.maps.LatLng( 39.0686606 , 141.3507552 );

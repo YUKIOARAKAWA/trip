@@ -20,12 +20,14 @@ class Place < ActiveRecord::Base
   #　行きたい度に応じて、⭐️を表示させる。
   #　とりあえず、場所にひもづくピンのなかで、一番目の情報を表示する。
   def show_star
-    if self.pins[0].want == 0
-      "⭐️"
-    elsif self.pins[0].want == 1
-      "⭐️⭐️"
-    else
-      "⭐️⭐️⭐️"
+    if self.pins[0].present?
+      if self.pins[0].want == 0
+        "⭐️"
+      elsif self.pins[0].want == 1
+        "⭐️⭐️"
+      else
+        "⭐️⭐️⭐️"
+      end
     end
   end
 

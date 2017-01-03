@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       post 'add_member'
       post 'datetime'
       get 'modal_restaurant'
+      post 'add_restaurant'
     end
     member do
       get 'member'
