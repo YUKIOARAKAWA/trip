@@ -37,7 +37,7 @@
   //      alert( result.hit_per_page + '取得件数\n' );
         for ( var i in result.rest ){
   //          res += result.rest[i].name + ' ' + result.rest[i].url + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
-            res += '<input type="button" value="追加" class="add btn btn-primary restaurant" id = ' + i + ' />'
+            res += '<input type="button" value="追加" class="add btn btn-success restaurant" id = ' + i + ' />'
                 + '<a href=' + result.rest[i].url
                 + '>' + result.rest[i].name + '</a>'
                 + '最寄駅：'
@@ -343,7 +343,6 @@ document.getElementById( 'confirm' ).onclick = function( e ){
 
 
 function callbacks(data){
-//  alert(data);
 //ここから
 //alert(data["hash"]);
 //alert(data.point);
