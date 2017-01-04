@@ -1,7 +1,9 @@
 class Place < ActiveRecord::Base
   geocoded_by :address
-  after_validation :geocode
 
+
+
+  after_validation :geocode, if: :address_changed?
   belongs_to :user
   belongs_to :plan
   has_many :pins, dependent: :destroy

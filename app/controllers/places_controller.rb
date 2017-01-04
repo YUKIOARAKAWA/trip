@@ -69,7 +69,9 @@ class PlacesController < ApplicationController
   end
 
   def reorder
-    params[:row].each_with_index {|row, i| Place.update(row, {:route => i + 1})}
+    params[:row].each_with_index {|row, i|
+      Place.update(row, {:route => i + 1})
+    }
     @place = Place.find(params[:row][0])
     @plan = @place.plan
     @places = @plan.places.order(:route)
