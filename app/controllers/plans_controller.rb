@@ -101,7 +101,7 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:plan_id])
     @place = @plan.places.build(latitude: params[:latitude] ,longitude: params[:longitude], address: params[:name], user_id: current_user.id )
     @place.set_route(@plan.id)
-    @place.save
+    @place.save(validate: false)
     @places = @plan.places.order(:route)
 
         i = 1
