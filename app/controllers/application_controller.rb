@@ -29,7 +29,8 @@ class ApplicationController < ActionController::Base
 
   #　デバイスでnameを更新できるようにする
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:account_update) << :name
+    #devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
 end
