@@ -69,7 +69,9 @@ class PlacesController < ApplicationController
   end
 
   def reorder
-    params[:row].each_with_index {|row, i| Place.update(row, {:route => i + 1})}
+    params[:row].each_with_index {|row, i|
+      Place.update(row, {:route => i + 1})
+    }
     @place = Place.find(params[:row][0])
     @plan = @place.plan
     @places = @plan.places.order(:route)
@@ -77,8 +79,10 @@ class PlacesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
-      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
-                        行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
+      if place.pins[0].present?
+        marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
+                          行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
+      end
       marker.picture({
                 :url    => "/#{i}.png",
                 #:url    => "https://graph.facebook.com/#{place.user.uid}/picture?width=32&height=32",
