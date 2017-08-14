@@ -76,3 +76,5 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
 gem 'dotenv-rails'
+
+gem 'rake', '12.0.0'
