@@ -3,7 +3,7 @@ class MypageController < ApplicationController
 
   def top
     @user = User.find(params[:id])
-    @myplans = @user.plans
+    @my_plans = @user.plans
     @plan = Plan.new
   end
 end
