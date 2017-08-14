@@ -66,14 +66,8 @@
 
 			<% end %>
 
-		レストラン検索
-		<input type="text" placeholder="enter your access key here" class="js--key"><input type="button" value="レストラン検索" class="js--apply" />
-		レストラン検索
-
-
 		<!-- モーダルウィンドウを呼び出すボタン -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">食事スポットを検索</button>
-		<%= link_to 'レストランモーダル', modal_restaurant_plans_path, method: "get", remote: true %>
+		<%= button_to 'お食事スポットを検索', modal_restaurant_plans_path, method: "get", remote: true, class: "btn btn-primary" %>
 
 
 		<!-- モーダルウィンドウの中身 -->
