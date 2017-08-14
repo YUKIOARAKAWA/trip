@@ -2,8 +2,6 @@ class PlacesController < ApplicationController
   before_action :set_place, only: [:destroy]
   before_action :authenticate_user!
 
-  # DELETE /places/1
-  # DELETE /places/1.json
   def destroy
     @place.destroy
     # 経路(route)を作り直す
@@ -16,9 +14,11 @@ class PlacesController < ApplicationController
   end
 
   def reorder
-    params[:row].each_with_index {|row, i|
-      Place.update(row, {:route => i + 1})
+    # 経路を再作成
+    params[:row].each.with_index(1) {|row, route|
+      Place.update(row, {route: route})
     }
+
     @place = Place.find(params[:row][0])
     @plan = @place.plan
     @places = @plan.places.order(:route)
@@ -38,7 +38,6 @@ class PlacesController < ApplicationController
                })
       marker.json({title: place.address})
       i = i + 1
-  #    binding.pry
     end
 
     @point = []
@@ -57,12 +56,11 @@ class PlacesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_place
       @place = Place.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
       params.require(:place).permit(:user_id, :plan_id, :address, :latitude, :longitude, :route)
     end
