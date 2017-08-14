@@ -3,14 +3,21 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!
 
   def destroy
-    @place.destroy
-    # 経路(route)を作り直す
-    @places = @place.plan.places
-    @places.each.with_index(1) {|place, route| place.update(route: route)}
+    ActiveRecord::Base.transaction do
+      @place.destroy!
+      # 経路(route)を作り直す
+      @places = @place.plan.places
+      @places.each.with_index(1) {|place, route| place.update!(route: route)}
+    end
 
     respond_to do |format|
       format.html { redirect_to plan_path(@place.plan.id), notice: '削除しました' }
     end
+
+    rescue => e
+      respond_to do |format|
+        format.html { redirect_to plan_path(@place.plan.id), alert: '削除に失敗しました' }
+      end
   end
 
   def reorder
