@@ -30,7 +30,7 @@
 <% end %>
 
 <br>
-<h3><現在のメンバー></h3>
+<h3><%= "現在のメンバー(#{@members.count})"%></h3>
   <% @members.each do |member| %>
     <td><%= member.name %></td><br>
     <%= profile_img(member) %>
