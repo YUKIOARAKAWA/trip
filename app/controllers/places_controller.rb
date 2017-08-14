@@ -5,17 +5,13 @@ class PlacesController < ApplicationController
   # DELETE /places/1
   # DELETE /places/1.json
   def destroy
-    plan_id = Place.find(params[:id]).plan.id
     @place.destroy
-    @reorder = Place.where(plan_id: plan_id)
-    @reorder.each_with_index {|route, i| Place.update(route, {:route => i + 1})}
-    #binding.pry
-
-    #params[:row].each_with_index {|row, i| Place.update(row, {:route => i + 1})}
+    # 経路(route)を作り直す
+    @places = @place.plan.places
+    @places.each.with_index(1) {|place, route| place.update(route: route)}
 
     respond_to do |format|
-      format.html { redirect_to plan_path(plan_id), notice: '削除しました' }
-      format.json { head :no_content }
+      format.html { redirect_to plan_path(@place.plan.id), notice: '削除しました' }
     end
   end
 
