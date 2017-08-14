@@ -54,7 +54,7 @@ class PlansController < ApplicationController
 
   def add
     @place = Place.new(place_params)
-    @place.set_route(params[:place][:plan_id])
+    @place.set_route
     respond_to do |format|
       if @place.valid?
         if @place.latitude.nil?

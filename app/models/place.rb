@@ -1,8 +1,6 @@
 class Place < ActiveRecord::Base
   geocoded_by :address
 
-
-
   after_validation :geocode, if: :address_changed?
   belongs_to :user
   belongs_to :plan
@@ -13,10 +11,10 @@ class Place < ActiveRecord::Base
   validates :address, presence: true
 
 
-  #　追加されたplaceをプランの最後の設定する
-  def set_route(plan_id)
-    max_cnt = Plan.find(plan_id).places.count
-    self.route = max_cnt + 1
+  # ルート(順路)の設定
+  def set_route
+    # planの最後に入れるために登録されている(places + 1)をrouteに設定する
+    self.route = plan.places.count + 1
   end
 
   #　行きたい度に応じて、⭐️を表示させる。
