@@ -13,3 +13,4 @@
 /tmp
 # dotenv
 .env
+/vendor/bundle
