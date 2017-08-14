@@ -19,7 +19,7 @@
 <br>
 追加するメンバーを選択してください。
   <div class="field">
-    <%= f.collection_select :user_id, User.where.not(id: @joined_members_ids), :id, :name %>
+    <%= f.collection_select :user_id, User.where.not(id: @members.ids), :id, :name %>
   </div>
   <div class="field">
     <%= f.hidden_field :plan_id %>
