@@ -6,7 +6,4 @@ class MypageController < ApplicationController
     @myplans = @user.plans
     @plan = Plan.new
   end
-
-  def xxx
-  end
 end
