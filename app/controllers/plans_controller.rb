@@ -100,7 +100,7 @@ class PlansController < ApplicationController
   def add_restaurant
     @plan = Plan.find(params[:plan_id])
     @place = @plan.places.build(latitude: params[:latitude] ,longitude: params[:longitude], address: params[:name], user_id: current_user.id )
-    @place.set_route(@plan.id)
+    @place.set_route
     @place.save(validate: false)
     @places = @plan.places.order(:route)
 
