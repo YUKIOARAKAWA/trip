@@ -204,7 +204,6 @@ class PlansController < ApplicationController
       if @plan.save
         PlanUser.create(plan_id: @plan.id, user_id: current_user.id)
         format.html { redirect_to ({action: 'member', id: @plan.id , flg: 'new'}) }
-      # format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
         format.html { render :new }
@@ -227,16 +226,6 @@ class PlansController < ApplicationController
     end
   end
 
-  # DELETE /plans/1
-  # DELETE /plans/1.json
-  def destroy
-    @plan.destroy
-    respond_to do |format|
-      format.html { redirect_to plans_url, notice: 'Plan was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   def modal_restaurant
     respond_to do |format|
       format.js
@@ -244,30 +233,30 @@ class PlansController < ApplicationController
   end
 
   private
-    def set_plan
-      @plan = Plan.find(params[:id])
-    end
 
-    def plan_params
-      params.require(:plan).permit(:name, :start_date, :end_date, :area_id)
-    end
+  def set_plan
+    @plan = Plan.find(params[:id])
+  end
 
-    def place_params
-      params.require(:place).permit(:user_id, :plan_id, :address, :latitude, :longitude, :route,
-                                    pins_attributes: [:comment, :want])
-    end
+  def plan_params
+    params.require(:plan).permit(:name, :start_date, :end_date, :area_id)
+  end
 
-    def plan_user_params
-      params.require(:plan_user).permit(:user_id, :plan_id)
-    end
+  def place_params
+    params.require(:place).permit(:user_id, :plan_id, :address, :latitude, :longitude, :route,
+                                  pins_attributes: [:comment, :want])
+  end
 
-    def datatime_params
-      params.require(:place).permit(:from, :to, :id)
-    end
+  def plan_user_params
+    params.require(:plan_user).permit(:user_id, :plan_id)
+  end
 
-    def search_params
-      params.require(:plan).permit(:area_id)
-    end
+  def datatime_params
+    params.require(:place).permit(:from, :to, :id)
+  end
 
+  def search_params
+    params.require(:plan).permit(:area_id)
+  end
 
 end
