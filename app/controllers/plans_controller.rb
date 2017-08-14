@@ -3,15 +3,12 @@ class PlansController < ApplicationController
   before_action :authenticate_user!
   before_action :member_only, only: [:member, :edit, :update, :destroy]
 
-  # GET /plans
-  # GET /plans.json
   def index
     @plans = Plan.where(search_params)
-    @areaname = Area.find(search_params[:area_id]).name
+    area_id = search_params[:area_id]
+    @area_name = Area.find(area_id).name
   end
 
-  # GET /plans/1
-  # GET /plans/1.json
   def show
     @members = @plan.users
     @place = Place.new
@@ -65,7 +62,6 @@ class PlansController < ApplicationController
           format.json { render :show, status: :created, location: @place }
         end
       else
-        #format.html { render :new }
         format.html { redirect_to ({action: 'show', id: @place.plan.id }), alert: '場所が入力されていません' }
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
